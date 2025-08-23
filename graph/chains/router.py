@@ -14,6 +14,10 @@ class RouteQuery(BaseModel):
         description="Given a user question choose to route it to web search or a vectorstore"
     )
 
+llm = ChatOpenAI(temperature=0)
+#I dont want ChatGPT to be hallucinated! So, temperature must be about zero.
+
+
 if __name__ == '__main__':
     print("Hi")
 
