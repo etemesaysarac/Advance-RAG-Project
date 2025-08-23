@@ -40,6 +40,6 @@ question_router = route_prompt | structured_llm_router
 
 if __name__ == '__main__':
     print(question_router.invoke(
-        {"question": "What is the current weather in İstanbul?"}
+        {"question": "What is agent on llm?"}
     ))
-#When I asked about the current weather in Istanbul, it gave "datasource='websearch'" as a result, as this has nothing to do with vectorstore conditions.
+#When asked "What is agent on llm?", he responded "vectorstore." The program works efficiently.
