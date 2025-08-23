@@ -3,9 +3,10 @@ from langchain_core.prompts import ChatPromptTemplate
 #from langchain_core.pydantic_v1 import BaseModel, Field   old usage
 from pydantic import BaseModel, Field
 from typing import Literal
-from dotenv import load_dotenv
 
-load_dotenv()
+
+"""from dotenv import load_dotenv
+load_dotenv()"""
 
 
 class RouteQuery(BaseModel):
@@ -37,9 +38,9 @@ route_prompt =ChatPromptTemplate.from_messages(
 question_router = route_prompt | structured_llm_router
 #I created a chain called "question_router" to receive and process data from the system and the user.
 
-
+"""
 if __name__ == '__main__':
     print(question_router.invoke(
-        {"question": "What is agent on llm?"}
+        {"question": "How can I make hamburger?"}
     ))
-#When asked "What is agent on llm?", he responded "vectorstore." The program works efficiently.
+#When asked "What is agent on llm?", he responded "vectorstore." The program works efficiently."""
