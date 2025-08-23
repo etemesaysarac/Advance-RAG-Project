@@ -42,7 +42,7 @@ retreival_grader = grade_promt | structured_llm_grader
 
 
 if __name__ == "__main__":
-    user_question = "Waht is prompt Engineering?"
+    user_question = "What is prompt Engineering?"
     docs = retriver.get_relevant_documents(user_question)
     #print(docs)
 #I imported "retriver" from "ingestion." Then, using this module, I printed the relevant document contents here.
