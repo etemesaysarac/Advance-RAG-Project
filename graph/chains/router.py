@@ -19,6 +19,15 @@ llm = ChatOpenAI(temperature=0)
 structured_llm_router = llm.with_structured_output(RouteQuery)
 # "llm" and "RouteQuery" are linked. This way, the returned response will be one of the options specified in Literal.
 
+system_prompt= """
+You are an expert at routing a user question to a vectorstore or web search.
+The vectorstore contains documents related to agents, prompt engineering and adversarial attack on llms.
+Use the vectorstore for question on these topics. For all else, use web search.
+"""
+
+
+
+
 if __name__ == '__main__':
     print("Hi")
 
