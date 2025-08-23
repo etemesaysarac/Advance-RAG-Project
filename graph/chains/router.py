@@ -16,7 +16,8 @@ class RouteQuery(BaseModel):
 
 llm = ChatOpenAI(temperature=0)
 #I dont want ChatGPT to be hallucinated! So, temperature must be about zero.
-
+structured_llm_router = llm.with_structured_output(RouteQuery)
+# "llm" and "RouteQuery" are linked. This way, the returned response will be one of the options specified in Literal.
 
 if __name__ == '__main__':
     print("Hi")
