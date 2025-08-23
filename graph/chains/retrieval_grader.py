@@ -30,3 +30,5 @@ grade_promt = ChatPromptTemplate.from_messages(
 ])
 #The system was told: What is the relationship between the question and the document?
 
+retreival_grader = grade_promt | structured_llm_grader
+#chain
