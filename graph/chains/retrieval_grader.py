@@ -3,10 +3,10 @@ from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
 
-#TEST PURPOSE
+"""#TEST PURPOSE
 from dotenv import load_dotenv
 load_dotenv()
-from ingestion import retriver
+from ingestion import retriver"""
 
 from graph.chains.router import structured_llm_router
 
@@ -39,7 +39,7 @@ grade_promt = ChatPromptTemplate.from_messages(
 retreival_grader = grade_promt | structured_llm_grader
 #chain
 
-
+"""
 
 if __name__ == "__main__":
     user_question = "What is prompt Engineering?"
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     ))
 
     """user question = "What is prompt engineering?"
-The "page_content" in the first index of the document was the part we wanted returned from router.py. 
+The "page_content" in the first index of the document was the part we wanted returned from router.py.
 Check result:
 
-binary_score='yes'"""
+binary_score='yes'""""""
