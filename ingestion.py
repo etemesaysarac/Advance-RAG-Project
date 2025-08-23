@@ -16,4 +16,4 @@ docs = [WebBaseLoader(url).load() for url in urls]
 doct_list =[item for sublist in docs for item in sublist]
 
 if __name__ == '__main__':
-    print(' ')
+    print(doct_list)
