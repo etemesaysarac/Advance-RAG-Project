@@ -9,7 +9,10 @@ class RouteQuery(BaseModel):
     """
     Route a user query to the most relevant datasource.
     """
-
+    datasource: Literal["vectorstore", "websearch"] = Field(
+        ...,
+        description="Given a user question choose to route it to web search or a vectorstore"
+    )
 
 if __name__ == '__main__':
     print("Hi")
