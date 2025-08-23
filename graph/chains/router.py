@@ -25,6 +25,13 @@ The vectorstore contains documents related to agents, prompt engineering and adv
 Use the vectorstore for question on these topics. For all else, use web search.
 """
 
+route_prompt =ChatPromptTemplate.from_message(
+    [
+        ("system", system_prompt),
+        ("human", "{question}")
+    ])
+
+question_router = route_prompt | structured_llm_router
 
 
 
