@@ -43,6 +43,10 @@ retreival_grader = grade_promt | structured_llm_grader
 
 if __name__ == "__main__":
     docs = retriver.get_relevant_documents("What is prompt Engineering?")
-    print(docs)
+    #print(docs)
 #I imported "retriver" from "ingestion." Then, using this module, I printed the relevant document contents here.
 # To do this, I used the "get_relevant_documents" module in the "retriever" module.
+    print(docs[0])
+    #Let's take the first index in the document.
+    # The goal is to maximize the document's efficiency by simplifying it.
+    # I don't want unnecessary content. I want to take the space I'll be annotating.
