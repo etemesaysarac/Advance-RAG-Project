@@ -57,3 +57,9 @@ if __name__ == "__main__":
     print(retreival_grader.invoke(
         {"question": user_question, "document": retrieved_document}
     ))
+
+    """user question = "What is prompt engineering?"
+The "page_content" in the first index of the document was the part we wanted returned from router.py. 
+Check result:
+
+binary_score='yes'"""
