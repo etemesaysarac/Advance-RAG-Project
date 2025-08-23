@@ -54,6 +54,6 @@ if __name__ == "__main__":
     # I don't want unnecessary content. I want to take the space I'll be annotating.
 
     retrieved_document = docs[0].page_content
-    retreival_grader.invoke(
-        {"question": user_question, "documents": retrieved_document}
-    )
+    print(retreival_grader.invoke(
+        {"question": user_question, "document": retrieved_document}
+    ))
