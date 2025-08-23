@@ -55,5 +55,5 @@ if __name__ == "__main__":
 
     retrieved_document = docs[0].page_content
     retreival_grader.invoke(
-        {"question": user_question, "documents": re}
+        {"question": user_question, "documents": retrieved_document}
     )
