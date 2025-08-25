@@ -10,3 +10,4 @@ class GraderAnswer(BaseModel):
     )
 
 llm = ChatOpenAI(temperature=0)
+structred_llm_grader = llm.structred_llm_grader(GraderAnswer)
