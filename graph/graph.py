@@ -17,7 +17,7 @@ workflow.add_node(GENERATE, generate)
 workflow.add_node(GRADE_DOCUMENTS, grade_documents)
 workflow.add_node(WEBSEARCH, web_search)
 
-if __name__ == '__main__':
-    app = workflow.compile()
-    app.get_graph().draw_mermaid_png(output_file_path="graph.png")
+
+app = workflow.compile()
+app.get_graph().draw_mermaid_png(output_file_path="graph.png")
 #to check if it works or not for now.
