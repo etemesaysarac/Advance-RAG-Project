@@ -34,5 +34,10 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
 
         if grade.lower > "yes":
             #The result produced by "llm" can be in uppercase or lowercase. I want to see the entire result with ".lower" to see it for sure.
-            print()
+            print("---Grade : DOCUMENT RELEVANT TO QUESTION---")
+        else:
+            print("---Grade : DOCUMENT NOT RELEVANT TO QUESTION---")
+            web_search = True
+            continue
+        return {"question" : question, "documents" : documents, "web_search" : web_search}
 
