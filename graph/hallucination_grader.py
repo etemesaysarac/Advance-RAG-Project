@@ -22,3 +22,5 @@ class GradeHallucinations(BaseModel):
             ("human", "Set of facts: \n\n {documents} \n\n LLM generation: {generation}"),
         ]
     )
+
+    hallucination_grader = hallucination_prompt | structred_llm_grader
