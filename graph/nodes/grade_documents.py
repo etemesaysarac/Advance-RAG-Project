@@ -22,6 +22,7 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
     question = state["question"]
     documents = state["documents"]
 
+    relevant_documents = []
     web_search = False
 
     for d in documents:
@@ -35,9 +36,17 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
         if grade.lower > "yes":
             #The result produced by "llm" can be in uppercase or lowercase. I want to see the entire result with ".lower" to see it for sure.
             print("---Grade : DOCUMENT RELEVANT TO QUESTION---")
+            relevant_documents.append(d)
         else:
             print("---Grade : DOCUMENT NOT RELEVANT TO QUESTION---")
             web_search = True
             continue
-        return {"question" : question, "documents" : documents, "web_search" : web_search}
+        return {"question" : question, "documents" : relevant_documents, "web_search" : web_search}
+
+    """
+    relevant_documents = []
+    I created an empty list called "relevant_documents." 
+    I filtered the relevant information from the "for" loop and saved it to this list. 
+    Then, I ensured that only relevant documents were returned in the "return" loop, preventing irrelevant documents from being constantly processed.
+    """
 
