@@ -1,4 +1,7 @@
 from typing import Any, Dict
+
+from langchain_core.utils import print_text
+
 from graph.chains.retrieval_grader import retrival_grader
 from graph.state import GraphState
 
@@ -26,3 +29,6 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
             {"question": question, "documents": d.page_content}
             #I obtained the simplest form of the document with the page_content module.
         )
+
+        grade = score.binary_score
+
