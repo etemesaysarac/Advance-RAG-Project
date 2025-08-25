@@ -10,3 +10,8 @@ class GradeHallucinations(BaseModel):
     binary_score: str =Field(
         description="TAnswer is gounded in the facts, 'yes' or 'no'",
     )
+
+    structred_llm_grader = llm.with_structured_output(GradeHallucinations)
+
+    system_prompt = """You are a grader assessing whether an LLM generation is grounded in / supported by a set of retrieved facts. \n 
+         Give a binary score 'yes' or 'no'. 'Yes' means that the answer is grounded in / supported by the set of facts."""
