@@ -20,3 +20,9 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
     documents = state["documents"]
 
     web_search = False
+
+    for d in documents:
+        score = retrival_grader.invoke(
+            {"question": question, "documents": d.page_content}
+            #I obtained the simplest form of the document with the page_content module.
+        )
