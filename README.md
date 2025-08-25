@@ -50,8 +50,7 @@ This prompt is visible in the quick‑start example below and drives the sample 
 
 **High‑level flow (Mermaid):**
 
-```mermaid
-flowchart TD
+```
     Entry["Entry: route_question"]
     RETRIEVE["RETRIEVE"]
     WEBSEARCH["WEBSEARCH"]
