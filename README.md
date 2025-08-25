@@ -52,19 +52,28 @@ This prompt is visible in the quick‑start example below and drives the sample 
 
 ```mermaid
 flowchart TD
-    A[Entry: route_question] -->|vectorstore| R[RETRIEVE]
-    A -->|websearch| W[WEBSEARCH]
+    Entry["Entry: route_question"]
+    RETRIEVE["RETRIEVE"]
+    WEBSEARCH["WEBSEARCH"]
+    GRADE_DOCS["GRADE_DOCUMENTS"]
+    GENERATE["GENERATE"]
+    ENDNODE(("END"))
 
-    R --> GD[GRADE_DOCUMENTS]
-    GD -->|sufficiently relevant| G[GENERATE]
-    GD -->|not enough relevant| W
+    Entry --> RETRIEVE
+    Entry --> WEBSEARCH
 
-    G -->|useful| End((END))
-    G -->|not supported (hallucination)| G
-    G -->|not useful| W
+    RETRIEVE --> GRADE_DOCS
+    GRADE_DOCS --> GENERATE
+    GRADE_DOCS --> WEBSEARCH
 
-    W --> G
+    GENERATE --> ENDNODE
+    GENERATE --> GENERATE
+    GENERATE --> WEBSEARCH
+
+    WEBSEARCH --> GENERATE
+
 ```
+![Architecture diagram fallback](Assets/graph.png)
 
 ---
 
@@ -257,9 +266,9 @@ Decision logic resides in `graph/graph.py`:
 
 ![Sample QA](Assets/question1_1.png)
 
-**Figure B — Web search enrichment path**
+**Figure B — Query Routing & Self-Correcting RAG Flow**
 
-![Web Search](Assets/web_search.png)
+![Query Routing & Self-Correcting RAG Flow](Assets/LANGRAPH_structure.png)
 
 > If your filenames differ, adjust the relative paths accordingly.
 
