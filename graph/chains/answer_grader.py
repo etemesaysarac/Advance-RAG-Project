@@ -4,7 +4,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 from graph.chains.retrieval_grader import system_prompt
 
-
 class GraderAnswer(BaseModel):
 
     binary_score: str Field(
