@@ -60,8 +60,8 @@ flowchart TD
     GD -->|not enough relevant| W
 
     G -->|useful| End((END))
-    G -->|"not supported" (hallucination)| G
-    G -->|"not useful"| W
+    G -->|not supported (hallucination)| G
+    G -->|not useful| W
 
     W --> G
 ```
