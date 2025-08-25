@@ -7,4 +7,4 @@ llm = ChatOpenAI(temperature=0)
 
 prompt = hub.pull("rlm/rag-prompt")
 
-generation_chain = prompt | llm | StrOutputParser(()
+generation_chain = prompt | llm | StrOutputParser()
