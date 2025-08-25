@@ -1,3 +1,4 @@
+from langchain_core.runnables import RunnableSequence
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
@@ -24,7 +25,7 @@ answer_prompt = ChatPromptTemplate.from_messages([
     ("human", "User question: \n\n {question}\n\n LLM generation: {generation")
 ])
 
-hallucination_grader: RunnableSequence = hallucination_prompt | structured_llm_grader
+answer_grader: RunnableSequence = answer_prompt | structured_llm_grader
 
 """
 In answer_prompt, the question (the actual question asked by the user)-generation (LLM output) relationship was checked.
