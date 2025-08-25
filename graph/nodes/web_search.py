@@ -27,3 +27,7 @@ def web_search(state: GraphState) -> Dict[str, Any]:
     #The "Document" in the "langchain schema" was used to convert the obtained data into a real document.
     #equalized to the same variable ("web_results") to save space in memory
 
+    if documents is not None:
+        documents.append(web_results)
+    else:
+        documents = [web_results]
