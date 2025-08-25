@@ -2,16 +2,19 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
+from graph.chains.retrieval_grader import structured_llm_grader
+
 llm = ChatOpenAI(temperature=0)
+
 
 class GradeHallucinations(BaseModel):
     """Binary score for hallucination present in generated answer."""
 
-    binary_score: str =Field(
-        description="TAnswer is gounded in the facts, 'yes' or 'no'",
+    binary_score: bool = Field(
+        description="Answer is grounded in the facts, 'yes' or 'no'",
     )
 
-    structred_llm_grader = llm.with_structured_output(GradeHallucinations)
+structured_llm_grader = llm.with_structured_output(GradeHallucinations)
 
     system_prompt = """You are a grader assessing whether an LLM generation is grounded in / supported by a set of retrieved facts. \n 
          Give a binary score 'yes' or 'no'. 'Yes' means that the answer is grounded in / supported by the set of facts."""
@@ -23,4 +26,4 @@ class GradeHallucinations(BaseModel):
         ]
     )
 
-    hallucination_grader = hallucination_prompt | structred_llm_grader
+    hallucination_grader = hallucination_prompt | structured_llm_grader
