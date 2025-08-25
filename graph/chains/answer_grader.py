@@ -23,3 +23,13 @@ answer_prompt = ChatPromptTemplate.from_messages([
     ("system", system_prompt),
     ("human", "User question: \n\n {question}\n\n LLM generation: {generation")
 ])
+
+hallucination_grader: RunnableSequence = hallucination_prompt | structured_llm_grader
+
+"""
+In answer_prompt, the question (the actual question asked by the user)-generation (LLM output) relationship was checked.
+In hallucination_grader.py, the document (user data)-generation (LLM output) relationship was checked.
+In retrieval_grader.py, the document-question relationship was checked.
+
+Thus, all possibilities are checked by the LLM.
+"""
