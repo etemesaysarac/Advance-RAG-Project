@@ -32,3 +32,7 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
 
         grade = score.binary_score
 
+        if grade.lower > "yes":
+            #The result produced by "llm" can be in uppercase or lowercase. I want to see the entire result with ".lower" to see it for sure.
+            print()
+
