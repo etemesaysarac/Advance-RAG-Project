@@ -2,11 +2,12 @@ from langchain_core.runnables import RunnableSequence
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
+from graph.chains.hallucination_grader import structured_llm_grader
 from graph.chains.retrieval_grader import system_prompt
 
 class GraderAnswer(BaseModel):
 
-    binary_score: str Field(
+    binary_score: str = Field(
         description="Answer addresses the question, 'yes' or 'no'"
     )
 
