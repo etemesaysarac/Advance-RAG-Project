@@ -9,6 +9,29 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def decide_to_generate(state: GraphState):
+    print("---ASSESS GRADED DOCUMENTS---")
+    if state["web_search"]:
+        print("WEBSEARCH")
+        return WEBSEARCH
+    else:
+        print("GENERATE")
+        return GENERATE
+def grade_generation_grounded_in_documents_and_question(state: GraphState) -> str:
+    print("---CHECK HALLUCINATIONS---")
+    question = state["question"]
+    documents = state["documents"]
+    generation = state["generation"]
+
+    score = hallucination_grader.invoke(
+        {"documents": documents, "generation": generation}
+    )
+    if score.binary_score is not None:
+    #short version of this ==== if hallucination_grade := scrore.binary_score:
+        if score.binary_score == "yes":
+            print("GENERATION IS GROUNDED IN DOCUMENTS")
+            score = answer_grader.invoke({"question": question, "generation": generation})
+
 
 workflow = StateGraph(GraphState)
 
