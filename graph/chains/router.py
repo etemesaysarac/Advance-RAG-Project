@@ -1,8 +1,7 @@
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
-#from langchain_core.pydantic_v1 import BaseModel, Field   old usage
-from pydantic import BaseModel, Field
 from typing import Literal
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.pydantic_v1 import BaseModel, Field
+from langchain_openai import ChatOpenAI
 
 
 """from dotenv import load_dotenv
@@ -10,12 +9,11 @@ load_dotenv()"""
 
 
 class RouteQuery(BaseModel):
-    """
-    Route a user query to the most relevant datasource.
-    """
+    """Route a user query to the most relevant datasource."""
+
     datasource: Literal["vectorstore", "websearch"] = Field(
         ...,
-        description="Given a user question choose to route it to web search or a vectorstore"
+        description="Given a user question choose to route it to web search or a vectorstore.",
     )
 
 llm = ChatOpenAI(temperature=0)
@@ -29,11 +27,12 @@ The vectorstore contains documents related to agents, prompt engineering and adv
 Use the vectorstore for question on these topics. For all else, use web search.
 """
 
-route_prompt =ChatPromptTemplate.from_messages(
+route_prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),
-        ("human", "{question}")
-    ])
+        ("human", "{question}"),
+    ]
+)
 
 question_router = route_prompt | structured_llm_router
 #I created a chain called "question_router" to receive and process data from the system and the user.

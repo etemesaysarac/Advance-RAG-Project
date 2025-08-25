@@ -12,7 +12,7 @@ class GraderAnswer(BaseModel):
     )
 
 llm = ChatOpenAI(temperature=0)
-structred_llm_grader = llm.with_structured_output(GraderAnswer)
+structured_llm_grader = llm.with_structured_output(GraderAnswer)
 
 system_prompt = """
 You are a grader assessing wheter an answer addresses / resolves a question. \n

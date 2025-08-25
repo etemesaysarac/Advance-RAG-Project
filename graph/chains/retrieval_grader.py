@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 """#TEST PURPOSE
 from dotenv import load_dotenv
 load_dotenv()
-from ingestion import retriver"""
+from ingestion import retriever"""
 
 from graph.chains.router import structured_llm_router
 
@@ -30,13 +30,13 @@ system_prompt = """You are a grader assessing relevance of a retrieved document 
     If the document contains keyword(s) or semantic meaning related to the question, grade it as relevant. \n
     Give a binary score 'yes' or 'no' score to indicate whether the document is relevant to the question."""
 
-grade_promt = ChatPromptTemplate.from_messages(
+grade_prompt = ChatPromptTemplate.from_messages(
     [("system", system_prompt),
      ("human", "Retrieved document : {document}, User question : {question}")
 ])
 #The system was told: What is the relationship between the question and the document?
 
-retrival_grader = grade_promt | structured_llm_grader
+retrieval_grader = grade_prompt | structured_llm_grader
 #chain
 
 """
