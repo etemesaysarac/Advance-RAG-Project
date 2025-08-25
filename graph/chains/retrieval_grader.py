@@ -36,7 +36,7 @@ grade_promt = ChatPromptTemplate.from_messages(
 ])
 #The system was told: What is the relationship between the question and the document?
 
-retreival_grader = grade_promt | structured_llm_grader
+retrival_grader = grade_promt | structured_llm_grader
 #chain
 
 """
@@ -58,8 +58,8 @@ if __name__ == "__main__":
         {"question": user_question, "document": retrieved_document}
     ))
 
-    """user question = "What is prompt engineering?"
+    user question = "What is prompt engineering?"
 The "page_content" in the first index of the document was the part we wanted returned from router.py.
 Check result:
 
-binary_score='yes'""""""
+binary_score='yes'"""
