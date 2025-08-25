@@ -15,3 +15,10 @@ class GradeHallucinations(BaseModel):
 
     system_prompt = """You are a grader assessing whether an LLM generation is grounded in / supported by a set of retrieved facts. \n 
          Give a binary score 'yes' or 'no'. 'Yes' means that the answer is grounded in / supported by the set of facts."""
+
+    hallucination_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", system_prompt),
+            ("human", "Set of facts: \n\n {documents} \n\n LLM generation: {generation}"),
+        ]
+    )
