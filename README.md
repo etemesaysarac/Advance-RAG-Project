@@ -70,7 +70,6 @@ This prompt is visible in the quick‑start example below and drives the sample 
     GENERATE --> WEBSEARCH
 
     WEBSEARCH --> GENERATE
-
 ```
 ![Architecture diagram fallback](Assets/graph.png)
 
