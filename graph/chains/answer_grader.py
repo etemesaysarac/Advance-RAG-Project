@@ -7,7 +7,7 @@ from graph.chains.retrieval_grader import system_prompt
 
 class GraderAnswer(BaseModel):
 
-    binary_score: str = Field(
+    binary_score: bool = Field(
         description="Answer addresses the question, 'yes' or 'no'"
     )
 

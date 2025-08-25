@@ -26,21 +26,58 @@ def grade_generation_grounded_in_documents_and_question(state: GraphState) -> st
     score = hallucination_grader.invoke(
         {"documents": documents, "generation": generation}
     )
-    if score.binary_score is not None:
-    #short version of this ==== if hallucination_grade := scrore.binary_score:
-        if score.binary_score == "yes":
-            print("GENERATION IS GROUNDED IN DOCUMENTS")
-            score = answer_grader.invoke({"question": question, "generation": generation})
+
+    if hallucination_grade := score.binary_score:
+        print("GENERATION IS GROUNDED IN DOCUMENTS")
+        score = answer_grader.invoke({"question": question, "generation": generation})
+        if answer_grade := score.binary_score:
+            print("GENERATION ADDRESSES QUESTION")
+            return "useful"
+        else:
+            print("GENERATION DOES NOT ADDRESSED QUESTION")
+            return "not useful"
+    else:
+        print("GENERATION DOES NOT GROUNDED IN DOCUMENTS")
+        return "not supported"
+
+def route_question(state: GraphState) -> str:
+    print("---ROUTE QUESTION---")
+    question = state["question"]
+    source = question_router.invoke({"question": question})
+    if source.datasource == "websearch":
+        print("WEBSEARCH")
+        return WEBSEARCH
+    elif source.datasource == "vectorstore":
+        return RETRIEVE
 
 
 workflow = StateGraph(GraphState)
 
 workflow.add_node(RETRIEVE, retrieve)
-workflow.add_node(GENERATE, generate)
 workflow.add_node(GRADE_DOCUMENTS, grade_documents)
+workflow.add_node(GENERATE, generate)
 workflow.add_node(WEBSEARCH, web_search)
 
 
 app = workflow.compile()
 app.get_graph().draw_mermaid_png(output_file_path="graph.png")
 #to check if it works or not for now.
+
+"""
+A cleaner and more organized code can be written above for this code using ":=". 
+if score.binary_score is not None:
+    # short version of this ==== if hallucination_grade := score.binary_score:
+    if score.binary_score.lower() == "yes":
+        print("GENERATION IS GROUNDED IN DOCUMENTS")
+        score = answer_grader.invoke({"question": question, "generation": generation})
+        if score.binary_score is not None:
+            if score.binary_score.lower() == "yes":
+                print("GENERATION ADDRESSES QUESTION")
+                return "useful"
+            else:
+                print("GENERATION DOES NOT ADDRESSED QUESTION")
+                return "not useful
+        else:
+            print("GENERATION DOES NOT GROUNDED IN DOCUMENTS")
+            return  not supported"
+"""
