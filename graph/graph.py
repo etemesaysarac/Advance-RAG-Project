@@ -12,3 +12,8 @@ load_dotenv()
 
 workflow = StateGraph(GraphState)
 
+workflow.add_node(RETRIEVE, retrieve)
+workflow.add_node(GENERATE, generate)
+workflow.add_node(GRADE_DOCUMENTS, grade_documents)
+workflow.add_node(WEBSEARCH, web_search)
+
