@@ -210,15 +210,3 @@ def test_generate_contract(monkeypatch):
 * **generate.py** → `{"generation": "text", "documents": docs, "question": q}`
 
 ---
-
-```
-
----
-
-### Instructions
-
-The two README blocks above are ready to paste into their respective folders. Open the canvas document, copy the exact block for `graph/chains/README.md` into `graph/chains/README.md` and the block for `graph/nodes/README.md` into `graph/nodes/README.md` in PyCharm.
-
-If you want, I can now prepare a single commit patch to add these files to your repository — tell me the commit message and branch (default `main`) and I will prepare it.
-
-```
